@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Valoliam ซื้อขายไอดี</title>
+
+    <link href="/css/button.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <h1>Valoliam ซื้อขายไอดี</h1>
+
+
+
+
+    <button class="btn" id="myBtn" name="myname" value="myvalue1" onclick="myFunction(this.value)"> 
+        <span class="btn__inner">
+            <span class="btn__slide"></span>
+            <span class="btn__content"> ADMIN ห้อง 1</span>
+        </span> </button>
+
+
+
+
+    <button  class="btn" id="myBtn" name="myname" value="myvalue2" onclick="myFunction(this.value)">
+        
+        <span class="btn__inner">
+        <span class="btn__slide"></span>
+        <span class="btn__content"> ADMIN ห้อง 2</span>
+    </span>
+    </button>
+
+
+    <button  class="btn" id="myBtn" name="myname" value="myvalue2" onclick="myFunction(this.value)">
+        
+        <span class="btn__inner">
+        <span class="btn__slide"></span>
+        <span class="btn__content"> ADMIN ห้อง 3</span>
+    </span>
+    </button>
+
+    <button  class="btn" id="myBtn" name="myname" value="myvalue2" onclick="myFunction(this.value)">
+        
+        <span class="btn__inner">
+        <span class="btn__slide"></span>
+        <span class="btn__content"> ADMIN ห้อง 4</span>
+    </span>
+    </button>
+
+    <button  class="btn" id="myBtn" name="myname" value="myvalue2" onclick="myFunction(this.value)">
+        
+        <span class="btn__inner">
+        <span class="btn__slide"></span>
+        <span class="btn__content"> ADMIN ห้อง 5</span>
+    </span>
+    </button>
+
+    <button  class="btn" id="myBtn" name="myname" value="myvalue2" onclick="myFunction(this.value)">
+        
+        <span class="btn__inner">
+        <span class="btn__slide"></span>
+        <span class="btn__content"> ADMIN ห้อง 6</span>
+    </span>
+    </button>
+
+    <button  class="btn" id="myBtn" name="myname" value="myvalue2" onclick="myFunction(this.value)">
+        
+        <span class="btn__inner">
+        <span class="btn__slide"></span>
+        <span class="btn__content"> ADMIN ห้อง 7</span>
+    </span>
+    </button>
+
+
+
+
+
+
+
+
+
+    <input type="Button" onClick="myFunction(this.value);this.disabled=true;" value="Submit">
+    <br />
+    <span id="datashop"></span>
+
+
+<div>
+    <a href="#" id="btn_prev">Prev</a>
+    <a href="#" id="btn_next">Next</a>
+    page: <span id="page"></span>
+
+    </div>
+
+    <br />
+    <br />
+    <div id="listingTable"></div>
+
+
+
+    <br />
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script>
+        var socket = io();
+
+
+
+
+        $.ajax({
+            url: "/datashop",
+            // Handle as Text
+            dataType: "text",
+            success: function (data) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+                // Parse JSON file
+                var json = $.parseJSON(data);
+                //Store data into a variable
+                // Display Players
+                //
+                var objJson = json
+                // $('#results').html('Currently there are: ' + json.players.online + '  users');
+                console.log("json " + json)
+
+
+
+
+
+
+
+
+
+                var current_page = 1;
+                var records_per_page = 5;
+
+
+                function prevPage() {
+                    if (current_page > 1) {
+                        current_page--;
+                        changePage(current_page);
+                    }
+                }
+
+                function nextPage() {
+                    if (current_page < numPages()) {
+                        current_page++;
+                        changePage(current_page);
+                    }
+                }
+
+                function changePage(page) {
+
+                    console.log("page" + page)
+
+                    var btn_next = document.getElementById("btn_next");
+                    var btn_prev = document.getElementById("btn_prev");
+                    var listing_table = document.getElementById("listingTable");
+                    var page_span = document.getElementById("page");
+
+                    page_span.innerHTML = page;
+
+
+
+                    if (page == 1) {
+                        btn_prev.style.visibility = "hidden";
+                    } else {
+                        btn_prev.style.visibility = "visible";
+                    }
+
+                    if (page == numPages()) {
+                        btn_next.style.visibility = "hidden";
+                    } else {
+                        btn_next.style.visibility = "visible";
+                    }
+
+
+
+                    // Validate page
+                    if (page < 1) page = 1;
+                    if (page > numPages()) page = numPages();
+
+                    listing_table.innerHTML = "";
+
+                    for (var i = (page - 1) * records_per_page; i < (page * records_per_page); i++) {
+
+                        listing_table.innerHTML += "<hr><br>" + objJson[i].name + "<br>" + "<img src='" + objJson[i].url + "'alt='Smiley face' width='420' height='210' " + "<br><br>";
+                        console.log(i)
+                    }
+
+
+
+
+                }
+
+                function numPages() {
+                    return Math.ceil(objJson.length / records_per_page);
+                }
+
+
+                window.onload = function () {
+                    changePage(1);
+                    console.log("window")
+                    document.getElementById("btn_next").onclick = function allfunction() {
+
+                        nextPage();
+                        //validation code to see State field is mandatory.  
+                    }
+                    document.getElementById("btn_prev").onclick = function allfunction() {
+
+                        prevPage();
+                        //validation code to see State field is mandatory.  
+                    }
+                }
+
+
+
+            }
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function myFunction(value) {
+
+            const obj = { name: "John", age: 30, city: "New York" };
+
+
+            console.log('function')
+
+            socket.emit('chat message', obj);
+
+
+
+            console.log('chat')
+
+
+        }
+
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

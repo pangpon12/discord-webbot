@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+
+    username: <input type="text" id="username">
+    <br>
+    password: <input type="text" id="password" >
+    <br>
+    <button onclick="myFunction()">Try it</button>
+
+    <p id="demo"></p>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+
+function myFunction() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  
+
+
+
+$.ajax({
+    url: "/database",
+    data: {"username": username,"password":password},
+    
+    success: function(response) {
+
+        console.log("success")
+        console.log(response.length)
+if(response.length == 1){
+
+
+
+document.getElementById("demo").innerHTML = "<input type='button'  class='buttonhere' value='Status Update'><br> name: <input type='text' id='name' > <br>url:<input type='text' id='url' >";
+
+
+    $('.buttonhere').click(function(){ 
+
+
+    var url = document.getElementById("url").value;
+  var name = document.getElementById("name").value;
+
+$.ajax({
+         
+            url: "/databasepost",
+            data:  {"username": username,"password":password,"url": url ,"name":name},
+            success: function (data) {
+                console.log("success")
+ }
+});
+
+})
+}
+
+    else{
+
+        document.getElementById("demo").innerHTML = "";
+        
+    }
+
+
+        //Do Something
+    },
+    error: function(xhr) {
+console.log(xhr)
+console.log("fail")
+
+        //Do Something to handle error
+    }
+});
+
+}
+/*
+$.ajax({
+    url: "/database",
+        type: "GET",
+        data: JSON.stringify([
+            {id: 1, name: "Shahed"}, 
+            {id: 2, name: "Hossain"}
+        ]),
+        contentType: "application/json; charset=utf-8",
+        dataType   : "json",
+        success    : function(){
+            console.log("Pure jQuery Pure JS object");
+        }
+    });
+*/
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
