@@ -3,21 +3,42 @@
   }
   
   body {
-    background-color: var(--background-color);
+   background-color: var(--background-color);
 
-    
   }
   h1 {
     color: rgb(255, 255, 255);
+    font-family: 'VALORANT', sans-serif;
+    text-align:center;
   }
   div {
     color: white;
   }
+
+  .heading-block {
+    background-color:#BD3944;
+  
+
+}
+
   a {
     color: white;
+   
+   
+      background-color: #7D8082; /* Green */
+      border: none;
+   
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+
   }
   .btn {
     /* Clean style */
+  
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -26,6 +47,7 @@
     padding: 0;
     color: var(--button-text-color);
     cursor: pointer;
+    
     /* Clean style */
 
 
@@ -46,9 +68,10 @@
     font-size: 14px;
     transition: all .15s ease;
   }
-  
+
+
   .btn::before,
-  .btn::after {
+  .btn::after {   
     content: '';
     display: block;
     position: absolute;
@@ -58,6 +81,8 @@
     transition: all .15s ease;
   }
   
+
+
   .btn::before {
     top: 0;
     border-bottom-width: 0;
@@ -66,6 +91,7 @@
   .btn::after {
     bottom: 0;
     border-top-width: 0;
+    
   }
   
   .btn:active,
@@ -143,8 +169,116 @@
     background-color: var(--button-bits-color-hover);
   }
   
+
+
+
   .btn--light {
     --button-background-color: var(--background-color);
+    --button-text-color: var(--highlight-color);
+    --button-inner-border-color: var(--highlight-color);
+    --button-text-color-hover: #ece8e1;
+    --button-bits-color-hover: #ece8e1;
+  }
+  .btn--red {
+    --button-background-color:#ff4654;
+    --button-text-color: var(--highlight-color);
+    --button-inner-border-color: var(--highlight-color);
+    --button-text-color-hover: #ece8e1;
+    --button-bits-color-hover: #ece8e1;
+  }
+  .btn--blue {
+    --button-background-color:  #9aefe3;
+    --button-text-color: var(--highlight-color);
+    --button-inner-border-color: var(--highlight-color);
+    --button-text-color-hover: #ece8e1;
+    --button-bits-color-hover: #ece8e1;
+  }
+  .btn--yellow {
+    --button-background-color:    #f4ed9d;
+    --button-text-color: var(--highlight-color);
+    --button-inner-border-color: var(--highlight-color);
+    --button-text-color-hover: #ece8e1;
+    --button-bits-color-hover: #ece8e1;
+  }
+
+  .btn--black {
+    --button-background-color:    #141414;
+    --button-text-color: var(--highlight-color);
+    --button-inner-border-color: var(--highlight-color);
+    --button-text-color-hover: #ece8e1;
+    --button-bits-color-hover: #ece8e1;
+  }
+
+  .btn--green {
+    --button-background-color:    #a2eea0;
+    --button-text-color: var(--highlight-color);
+    --button-inner-border-color: var(--highlight-color);
+    --button-text-color-hover: #ece8e1;
+    --button-bits-color-hover: #ece8e1;
+  }
+ 
+  .btn--ocean {
+    --button-background-color:   #0b7d77;
+    --button-text-color: var(--highlight-color);
+    --button-inner-border-color: var(--highlight-color);
+    --button-text-color-hover: #ece8e1;
+    --button-bits-color-hover: #ece8e1;
+  }
+
+  .btn--purple {
+    --button-background-color:  #bf53fb  ;
+    --button-text-color: var(--highlight-color);
+    --button-inner-border-color: var(--highlight-color);
+    --button-text-color-hover: #ece8e1;
+    --button-bits-color-hover: #ece8e1;
+  }
+
+
+
+  .btn--pink {
+    --button-background-color:  #f7d5db  ;
+    --button-text-color: var(--highlight-color);
+    --button-inner-border-color: var(--highlight-color);
+    --button-text-color-hover: #ece8e1;
+    --button-bits-color-hover: #ece8e1;
+  }
+ 
+
+/**/
+  .btn--rainbow {
+
+
+    --button-background-color:   rgba(0, 0, 255, 0.1);
+    /* reset */
+    -webkit-appearance: none;
+    border: 0;
+    outline: 0;
+    /* styles */
+    position: relative;
+    background: linear-gradient(-45deg, #ffd6d6,#faffb0,#c0ffb6,#d0ddff,#e1bfff);
+
+    
+   animation: gradientBG 4.5s ease infinite;
+  
+    color: black;
+    text-transform:uppercase;
+
+    transition: .3s;
+  }
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .btn--skymax {
+    --button-background-color:  #3c60bd  ;
     --button-text-color: var(--highlight-color);
     --button-inner-border-color: var(--highlight-color);
     --button-text-color-hover: #ece8e1;
