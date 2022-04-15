@@ -20,7 +20,9 @@
 
 
 
-
+            <div id='myModal' class='modal'> <span class='close'>&times;</span><img class='modal-content' id='img01'>
+                <div id='caption'></div>
+            </div>
 
 
 
@@ -164,6 +166,7 @@
 
     <script>
         var socket = io();
+        
         let facebookname;
         function alertfunction() {
 
@@ -183,30 +186,20 @@
             dataType: "text",
             success: function (data) {
 
+var objJson    = $.parseJSON(data);
 
-
-
-
-
-
-
-
-
+    function  test() {
 
 
 
                 // Parse JSON file
-                var json = $.parseJSON(data);
+          
                 //Store data into a variable
                 // Display Players
                 //
-                var objJson = json
+             
                 // $('#results').html('Currently there are: ' + json.players.online + '  users');
-                console.log("json " + json)
-
-
-
-
+             
 
 
 
@@ -265,14 +258,31 @@
 
                     for (var i = (page - 1) * records_per_page; i < (page * records_per_page); i++) {
 
-                        listing_table.innerHTML += "<hr><br>" + objJson[i].name + "<br>" + "<img src='" + objJson[i].url + "'alt='id-game image' width='420' height='210' " + "<br><br>";
-                        console.log(i)
+
+console.log("gfsg  "+i)
+
+var url = objJson[i].url 
+
+
+
+                        listing_table.innerHTML += "<hr> <br> <input type='image' onclick='loadscript("+i+")' src='" +url + "'   id='" + i + "' alt='" + objJson[i].name + "'  width='420' height='210'> <br> ชื่อไอดี :" + objJson[i].name +"<br> ราคา :"+ objJson[i].price+"<br>" +  "<br><br>";
+                      
+
                     }
 
 
 
 
                 }
+
+
+
+
+
+
+
+
+
 
                 function numPages() {
                     return Math.ceil(objJson.length / records_per_page);
@@ -294,6 +304,9 @@
                     }
                 }
 
+};
+
+test();
 
 
             }
@@ -303,7 +316,49 @@
 
 
 
+        function loadscript(ID) {
 
+
+                    console.log("loadscript")
+
+                  
+
+                    var modal = document.getElementById("myModal");
+                    // Get the image and insert it inside the modal - use its "alt" text as a caption
+                   
+                    var modalImg = document.getElementById("img01");
+                    var captionText = document.getElementById("caption");
+
+
+                    const myAnchor = document.getElementById(ID) 
+
+                    let src = myAnchor.getAttribute("src");
+                    var alt = myAnchor.getAttribute("alt");
+
+                    document.getElementById(ID).onclick   = function() {ddasrwt()};
+
+
+                    function ddasrwt() {
+                        modal.style.display = "block";
+                        modalImg.src = src;
+                        captionText.innerHTML = alt;
+
+                    }
+
+
+
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function () {
+                        modal.style.display = "none";
+                    }
+
+
+
+
+                }
 
 
 
@@ -337,6 +392,10 @@
 
             document.getElementById('pressed').innerHTML = 'ท่านได้กดปุ่มสั่งซื้อเรียบร้อยแล้วหากต้องการสั่งซื้อใหม่ กรุณารีเฟรสเว็ปอีกครั้ง'
         }
+
+
+
+
 
 
 
